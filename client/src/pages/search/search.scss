@@ -1,0 +1,35 @@
+
+body{
+    background-color: #181818;
+}
+.search-form{
+    position: relative;
+
+    .search{
+        outline: none;
+        position: absolute;
+        top: -59px;
+        right: 256px;
+        border: 1px solid white;
+        background: #3c3535;
+        padding: 8px 22px;
+        color: white;
+        z-index: 10;
+      }
+}
+.listitem{
+    margin-top: 75px;
+    .poster{
+        width: 36vh;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+        margin-left: 15px;
+        transition: transform 450ms;
+        margin-top: 10px;
+    }
+    .poster:hover{
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
