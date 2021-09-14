@@ -10,7 +10,7 @@ const Watch = () => {
     console.log(location);
     return (
         <div className="watch">
-           <Link to="/browser">
+           <Link to="/">
                 <div className="back">
                     <ArrowBackOutlined />
                    Home

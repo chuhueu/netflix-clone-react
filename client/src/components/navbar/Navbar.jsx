@@ -34,10 +34,10 @@ const Navbar = () => {
         <div className={isScrolled ? "navbar scrolled" : "navbar"}>
             <div className="container">
                 <div className="left">
-                    <Link to="/browser" className="link">
+                    <Link to="/" className="link">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png" alt="" />
                     </Link>
-                    <Link to="/browser" className="link">
+                    <Link to="/" className="link">
                         <span>Homepage</span>
                     </Link>
                     <Link to="/series" className="link">

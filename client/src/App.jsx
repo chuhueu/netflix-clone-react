@@ -15,13 +15,13 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/browser">
+        <Route exact path="/">
           {user ? <Home /> : <Redirect to="/register" />}
         </Route>
         <Route path="/register">
-          {!user ? <Register /> : <Redirect to="/browser" />}
+          {!user ? <Register /> : <Redirect to="/" />}
         </Route>
-        <Route path="/login">{!user ? <Login /> : <Redirect to="/browser" />}</Route>
+        <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route>
         {/* <Route path="/">
           {user ? <Home /> : <Redirect to="/register" />}
         </Route> */}

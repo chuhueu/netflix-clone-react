@@ -9,6 +9,7 @@ const movieRoute = require('./routes/movies');
 const listRoute = require('./routes/lists');
 const packageRoute = require('./routes/package');
 const dotenv = require("dotenv");
+//const Movie = require("./models/Movie");
 
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.use("/api/package", packageRoute);
 //   let payload = req.body.payload.trim();
 //   console.log(payload);
 // })
+
 app.get("/", (req, res) => {
   res.send("APP IS RUNNING")
 })
