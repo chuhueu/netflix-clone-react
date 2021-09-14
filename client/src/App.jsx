@@ -3,10 +3,11 @@ import './app.scss';
 import Home from "./pages/home/Home";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Watch from "./pages/watch/Watch";
-import Infor from "./pages/info/Infor";
+import Info from "./pages/info/Info";
 import Search from "./pages/search/Search";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import Edit from "./components/EditProfile/ProfileScreen";
 import { useContext } from "react";
 import { AuthContext } from "./authContext/AuthContext";
 const App = () => {
@@ -14,13 +15,16 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/browser">
           {user ? <Home /> : <Redirect to="/register" />}
         </Route>
         <Route path="/register">
-          {!user ? <Register /> : <Redirect to="/" />}
+          {!user ? <Register /> : <Redirect to="/browser" />}
         </Route>
-        <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route>
+        <Route path="/login">{!user ? <Login /> : <Redirect to="/browser" />}</Route>
+        {/* <Route path="/">
+          {user ? <Home /> : <Redirect to="/register" />}
+        </Route> */}
         {user && (
           <>
             <Route path="/movies">
@@ -32,8 +36,11 @@ const App = () => {
             <Route path="/watch">
               <Watch />
             </Route>
-            <Route path="/infor">
-              <Infor />
+            <Route path="/edit">
+              <Edit />
+            </Route>
+            <Route path="/info">
+              <Info />
             </Route>
             <Route path="/search">
               <Search />

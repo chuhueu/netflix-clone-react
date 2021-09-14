@@ -3,6 +3,7 @@ import './home.scss';
 import Navbar from '../../components/navbar/Navbar';
 import Featured from '../../components/featured/Featured';
 import List from '../../components/list/List';
+import Footer from '../../components/footer/Footer';
 import axios from "axios";
 const Home = ({ type }) => {
     const [lists, setLists] = useState([]);
@@ -32,6 +33,7 @@ const Home = ({ type }) => {
             {lists.map((list) => (
                 <List list={list} key={list._id}/>
             ))}
+            <Footer />
         </div>
     )
 }

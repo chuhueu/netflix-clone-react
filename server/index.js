@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+var bodyParser = require('body-parser');
 const cors = require('cors');
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/users');
@@ -11,6 +12,7 @@ const dotenv = require("dotenv");
 
 
 dotenv.config();
+app.use(bodyParser.json());
 app.use(cors());
 const URL = "mongodb+srv://testBoy:hieu123@cluster0.qhhal.mongodb.net/Netflix?retryWrites=true&w=majority";
 mongoose
@@ -32,7 +34,10 @@ app.use("/api/package", packageRoute);
 //   let payload = req.body.payload.trim();
 //   console.log(payload);
 // })
+app.get("/", (req, res) => {
+  res.send("APP IS RUNNING")
+})
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log("Backend server is running!");
 });

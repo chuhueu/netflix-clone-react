@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
 
-const Infor = () => {
+const Info = () => {
     return (
         <div>
             <h1 style={{color: "white"}}>this is the info</h1>
@@ -9,4 +9,4 @@ const Infor = () => {
     )
 }
 
-export default Infor
+export default Info

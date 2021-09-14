@@ -1,0 +1,18 @@
+.planScreen_plan{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+.plan{
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+.button{
+  border: none;
+  background-color: black;
+
+}
+.button:hover{
+    opacity: 0.8;
+    transition: 0.2s;
+}

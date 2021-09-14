@@ -99,11 +99,13 @@
             color: gray;
           }
           .title{
+            object-fit: cover;
             font-family: 'Netflix Sans';
             margin-left: 10px;
             font-size: 14px;
           }
           .genre {
+            text-transform: capitalize;
             font-weight: 700;
             margin-left: 10px;
             font-size: 14px;

@@ -22,7 +22,6 @@ const Search = () => {
         } else {
             setMovies([]);
         }
-        console.log(movies);
     }, [searchTerm])
     return (
         <>
