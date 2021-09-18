@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import './search.scss';
 
 const Search = () => {
+    const [showSearch, setShowSearch] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [movies, setMovies] = useState([]);
 
@@ -22,7 +23,17 @@ const Search = () => {
         } else {
             setMovies([]);
         }
-    }, [searchTerm])
+    }, [searchTerm]);
+
+    useEffect(() => {
+        if (movies) {
+            setShowSearch(true);
+        }
+        if(movies === []){
+            setShowSearch(false);
+        }
+    },[movies])
+
     return (
         <>
             <div>
@@ -34,13 +45,22 @@ const Search = () => {
                 </form>
             </div>
             <div className="listitem">
-                {movies.map((movie) => {
+                {!showSearch ? <h1>No Found</h1> :
+                    movies.map((movie) => {
+                        return (
+                            <Link to={{ pathname: '/watch', movie: movie }}>
+                                <img src={movie.imgSm} alt={movie.title} className="poster" key={movie._id} />
+                            </Link>
+                        )
+                    })
+                }
+                {/* {movies.map((movie) => {
                     return (
                         <Link to={{pathname: '/watch', movie: movie }}>
                             <img src={movie.imgSm} alt={movie.title} className="poster" key={movie._id}/>
                         </Link>
                     )
-                })}
+                })} */}
             </div>
         </>
     )
