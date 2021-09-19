@@ -41,12 +41,12 @@
         cursor: pointer;
         font-size: 16px;
 
-        @include tablet {
+        @include table {
           display: none;
         }
 
         &.navbarmainLinks {
-          @include tablet {
+          @include table {
             display: block;
           }
         }

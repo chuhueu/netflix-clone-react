@@ -10,27 +10,40 @@ import {
 import { useState, useEffect } from "react";
 import ReactPlayer from 'react-player/lazy';
 import axios from 'axios';
-import debounce from 'debounce';
 import { Link } from 'react-router-dom'
 const Listitem = ({ index, item }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [movie, setMovie] = useState([]);
+    const [delayHandler, setDelayHandler] = useState(null);
+
+    const handleMouseEnter = () => {
+        setDelayHandler(setTimeout(() => {
+            setIsHovered(true);
+        }, 500))
+    }
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+        clearTimeout(delayHandler);
+    }
+
 
     useEffect(() => {
-        const getMovie = async () => {
-            try {
-                const res = await axios.get("movies/find/" + item, {
-                    headers: {
-                        token:
-                            "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-                    },
-                });
-                setMovie(res.data);
-            } catch (error) {
-                console.log(error);
+        setTimeout(() => {
+            const getMovie = async () => {
+                try {
+                    const res = await axios.get("movies/find/" + item, {
+                        headers: {
+                            token:
+                                "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+                        },
+                    });
+                    setMovie(res.data);
+                } catch (error) {
+                    console.log(error);
+                }
             }
-        }
-        getMovie();
+            getMovie();
+        }, 500);
     }, [item]);
 
     return (
@@ -38,15 +51,15 @@ const Listitem = ({ index, item }) => {
             <div
                 className="listItem"
                 style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
             >
                 <img src={movie?.imgSm} alt={movie?.title} className="poster" />
                 {isHovered && (
                     <>
                         <ReactPlayer
                             controls playing={true} loop={true}
-                            // url={movie.trailer}
+                            url={movie.trailer}
                             className="trailer"
                             width='100%'
                             height='60%'
