@@ -27,7 +27,7 @@ const List = ({list}) => {
                 <ArrowBackIosOutlined className="sliderArrow left" onClick = {() => handleClick("left")} style={{display: !isMove && "none"}}/>
                 <div className="container" ref={listRef}>
                    {list.content.map((item, i) => (
-                        <ListItem index={i} item={item}/>
+                        <ListItem index={i} item={item} />
                    ))}
                 </div>
                 <ArrowForwardIosOutlined   className="sliderArrow right" onClick = {() => handleClick("right")}/>
