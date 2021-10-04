@@ -8,7 +8,6 @@ const Info = () => {
     const [readMore, setReadMore] = useState(false);
     const location = useLocation();
     const movie = location.movie;
-    console.log(movie);
     const truncate = (string, n) => {
         return string?.length > n ? string.substr(0, n - 1) + "..." : string;
     };
@@ -44,12 +43,14 @@ const Info = () => {
                                 </div>
                                 <div className="action">
                                     <div className="playFilm">
-                                        <Link to={{pathname: "/watch", movie: movie}}>
+                                        <Link to={{ pathname: "/watch", movie: movie }}>
                                             <button className="info-btn btn-play">Play</button>
                                         </Link>
-                                        <button className="info-btn btn-myList">
-                                            Add to My List
-                                        </button>
+                                        <Link to={{ pathname: "myList" }}>
+                                            <button className="info-btn btn-myList">
+                                                Add to My List
+                                            </button>
+                                        </Link>
                                     </div>
                                     <div className="myList"></div>
                                 </div>

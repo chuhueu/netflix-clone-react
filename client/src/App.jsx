@@ -8,6 +8,7 @@ import Search from "./pages/search/Search";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Edit from "./components/EditProfile/ProfileScreen";
+import MyList from "./pages/myList/MyList";
 import { useContext } from "react";
 import { AuthContext } from "./authContext/AuthContext";
 const App = () => {
@@ -44,6 +45,9 @@ const App = () => {
             </Route>
             <Route path="/search">
               <Search />
+            </Route>
+            <Route path="/myList">
+              <MyList />
             </Route>
           </>
         )}

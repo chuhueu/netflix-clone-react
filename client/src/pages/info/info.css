@@ -18,7 +18,7 @@
     cursor: pointer;
   }
   .info-btn:hover {
-    background-color: var(--netflix);
+    background-color: brown;
     transition: 0.2s;
   }
   .coverWrapper {
