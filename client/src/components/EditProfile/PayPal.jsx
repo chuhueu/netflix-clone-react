@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import './paypal.css'
 const PayPal = ({plan}) => {
+    const [info, setInfo] = useState({});
     const paypalRef = useRef();
     useEffect(() => {
         window.paypal
@@ -22,6 +23,7 @@ const PayPal = ({plan}) => {
           onApprove: async (data, actions) => {
             const order = await actions.order.capture();
             console.log(order);
+            setInfo(order);
           },
           onError: (err) => {
             console.log(err);
@@ -33,6 +35,7 @@ const PayPal = ({plan}) => {
     return (
       <div>
         <div ref={paypalRef}></div>
+        {console.log(info.create_time)}
       </div>
     );
 }

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 import { loginFailure, loginStart, loginSuccess } from "./AuthActions";
 
 export const login = async (user, dispatch) => {

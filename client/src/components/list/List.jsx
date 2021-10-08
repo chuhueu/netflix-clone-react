@@ -1,8 +1,8 @@
 import { ArrowBackIosOutlined, ArrowForwardIosOutlined } from '@material-ui/icons';
 import React, {useState, useRef, useEffect} from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import ListItem from '../listitem/Listitem'
-import MyList from '../../pages/myList/MyList';
+//import MyList from '../../pages/myList/MyList';
 import './list.scss';
 const List = ({list}) => {
     const [isMove, setIsMovie] = useState(false);

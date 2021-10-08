@@ -20,8 +20,8 @@ const Watch = () => {
                 controls playing={true} loop={true}
                 url = {movie.video}
                 className="video"
-                width='70%'
-                height='70%'
+                width='100%'
+                height='100%'
             />
         </div>
     )

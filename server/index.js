@@ -8,8 +8,8 @@ const userRoute = require('./routes/users');
 const movieRoute = require('./routes/movies');
 const listRoute = require('./routes/lists');
 const packageRoute = require('./routes/package');
+const transactionRoute = require('./routes/transaction');
 const dotenv = require("dotenv");
-//const Movie = require("./models/Movie");
 
 
 dotenv.config();
@@ -31,10 +31,7 @@ app.use("/api/users", userRoute);
 app.use("/api/movies", movieRoute);
 app.use("/api/lists", listRoute);
 app.use("/api/package", packageRoute);
-// app.post('/', (req,res) => {
-//   let payload = req.body.payload.trim();
-//   console.log(payload);
-// })
+app.use("/api/transaction", transactionRoute);
 
 app.get("/", (req, res) => {
   res.send("APP IS RUNNING")

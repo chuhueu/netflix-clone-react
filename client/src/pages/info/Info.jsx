@@ -75,7 +75,7 @@ const Info = () => {
             <div className="trailer">
                 <ReactPlayer
                     controls playing={true} loop={true}
-                    url={movie.video}
+                    url={movie.trailer}
                     className="video"
                     width='100%'
                     height='100%'

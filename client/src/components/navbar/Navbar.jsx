@@ -76,7 +76,6 @@ const Navbar = () => {
                         <div className="options">
                             <span>Settings</span>
                             <span onClick={() => dispatch(logout())}>Logout</span>
-
                         </div>
                     </div>
                 </div>

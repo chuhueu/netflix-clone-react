@@ -1,32 +1,70 @@
 // import axios from "axios";
-import { useRef } from "react";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from '../../axios';
+import ReactDOM from 'react-dom'
 import "./register.scss";
 
 export default function Register() {
+  const [listUser, setListUser] = useState([]);
+  const [check, setCheck] = useState(true);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
   const history = useHistory();
-
   const emailRef = useRef();
   const passwordRef = useRef();
   const usernameRef = useRef();
 
+  useEffect(() => {
+    const getListUser = async () => {
+      try {
+        const res = await axios.get("users", {
+          headers: {
+            token:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2MyYTg2ODE3NjNmODEwM2UzYjBiMCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzMzQ5OTg0MywiZXhwIjoxNjMzOTMxODQzfQ.G0Afn6YMLz3el69ri5c-hx0bmY8R-4hjVRvB8X_wpCY"
+          }
+        })
+        setListUser(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getListUser();
+  },[])
+
   const handleStart = () => {
     setEmail(emailRef.current.value);
+    let str = "";
+    listUser.map((list) => {
+      str += list.email;
+    })
+    let checkEmail= str.includes(emailRef.current.value);
+    if(checkEmail === true){
+      const element = <p>Email already registered! Please, try again</p>
+      ReactDOM.render(element, document.getElementById('errorEmail'));
+    }else{
+      setCheck(false);
+      ReactDOM.render(<p></p>, document.getElementById('errorEmail'));
+    }
   };
   const handleFinish = async (e) => {
     e.preventDefault();
-    setPassword(passwordRef.current.value);
-    setUsername(usernameRef.current.value);
+    let str = "";
+    listUser.map((list) => {
+      str += list.username;
+    })
+    let checkUsername= str.includes(usernameRef.current.value);
+    if(checkUsername === true){
+      setCheck(false);
+      const element = <p>Username already registered! Please, try again</p>
+      ReactDOM.render(element, document.getElementById('errorUsername'));
+    }
     try {
-      await axios.post("auth/register", { email,username, password });
+      await axios.post("auth/register", { email: email, username: usernameRef.current.value, password: passwordRef.current.value });
       history.push("/login");
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="register">
@@ -36,6 +74,7 @@ export default function Register() {
             className="logo"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
             alt=""
+            onClick={() => setCheck(true)}
           />
           <Link to="/login"><button className="loginButton">Sign In</button></Link>
         </div>
@@ -46,14 +85,18 @@ export default function Register() {
         <p>
           Ready to watch? Enter your email to create or restart your membership.
         </p>
-        {!email ? (
+        {(check) ? (
+          <>
           <div className="input">
             <input type="email" placeholder="email address" ref={emailRef} />
             <button className="registerButton" onClick={handleStart}>
               Get Started
             </button>
           </div>
+          <div id="errorEmail"></div>
+          </>
         ) : (
+          <>
           <form className="input">
             <input type="username" placeholder="username" ref={usernameRef} />
             <input type="password" placeholder="password" ref={passwordRef} />
@@ -61,6 +104,8 @@ export default function Register() {
               Start
             </button>
           </form>
+          <div id="errorUsername"></div>
+          </>
         )}
       </div>
     </div>
