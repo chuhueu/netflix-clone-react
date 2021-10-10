@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import './paypal.css'
+import axios from "../../axios";
 const PayPal = ({plan}) => {
     const [info, setInfo] = useState({});
     const paypalRef = useRef();
@@ -22,7 +23,6 @@ const PayPal = ({plan}) => {
           },
           onApprove: async (data, actions) => {
             const order = await actions.order.capture();
-            console.log(order);
             setInfo(order);
           },
           onError: (err) => {
@@ -31,11 +31,44 @@ const PayPal = ({plan}) => {
         })
         .render(paypalRef.current);
     }, [plan]);
+    const user = JSON.parse(localStorage.getItem("user"));
+    useEffect(() => {
+      if(info){
+        //upload giao dịch lên database
+        const transaction = async () => {
+          try {
+            const res = await axios.post("/transaction", {
+              headers: {
+                token:
+                "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
+              },
+              date: info.create_time,
+              package: info.purchase_units[0].description,
+              userID: user._id,
+              username: user.username,
+              amount: info.purchase_units[0].amount.value,
+              status: info.status
+            })
+            console.log(res.data);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        transaction();
+        //chuyển trạng thái user đã thanh toán
+        // const status = async () => {
+        //   try {
 
+        //   } catch (error) {
+        //     console.log(error);
+        //   }
+        // }
+      }
+    }, [info, user._id, user.username])
+    //console.log(plan.name);
     return (
       <div>
         <div ref={paypalRef}></div>
-        {console.log(info.create_time)}
       </div>
     );
 }
