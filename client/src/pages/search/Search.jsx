@@ -48,7 +48,7 @@ const Search = () => {
                 {!showSearch ? <h1>No Found</h1> :
                     movies.map((movie) => {
                         return (
-                            <Link to={{ pathname: '/info', movie: movie }}>
+                            <Link to={{ pathname: '/info?'+movie._id, movie: movie }}>
                                 <img src={movie.imgSm} alt={movie.title} key={movie._id} className="poster" />
                             </Link>
                         )

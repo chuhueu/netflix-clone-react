@@ -54,5 +54,29 @@ router.get("/find/:id", async (req, res) => {
     res.status(500).json(error);
   }
 });
+//GET TRANSACTION STATS
+router.get("/stats", async (req, res) => {
+  const today = new Date();
+  const latYear = today.setFullYear(today.setFullYear() - 1);
+
+  try {
+    const data = await Transaction.aggregate([
+      {
+        $project: {
+          month: { $month: "$createdAt" },
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          total: { $sum: 1 },
+        },
+      },
+    ]);
+    res.status(200).json(data)
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

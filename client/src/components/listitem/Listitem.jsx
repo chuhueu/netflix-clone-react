@@ -8,15 +8,20 @@ import {
     KeyboardArrowDown,
     CheckOutlined
 } from "@material-ui/icons";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ReactPlayer from 'react-player/lazy';
 import axios from '../../axios';
 import { Link } from 'react-router-dom';
-const Listitem = ({ index, item, addMyListClick, removeMyListClick }) => {
+import { FavouriteContext } from "../../favouriteContext/FavouriteContext";
+const Listitem = ({ index, item }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [movie, setMovie] = useState([]);
     //const [delayHandler, setDelayHandler] = useState(null);
     const [check, setCheck] = useState(false);
+    const {
+        addMovieToWatchList,
+        removeMovieFromWatchList,
+    } = useContext(FavouriteContext);
     const handleMouseEnter = () => {
         // setDelayHandler(setTimeout(() => {
         //     setIsHovered(true);
@@ -68,23 +73,23 @@ const Listitem = ({ index, item, addMyListClick, removeMyListClick }) => {
                     />
                     <div className="itemInfo">
                         <div className="icons">
-                            <Link to={{ pathname: "/watch", movie: movie }}>
+                            <Link to={{ pathname: "/watch?"+movie._id, movie: movie }}>
                                 <PlayArrow className="icon play" />
                             </Link>
                             {/* <Add className="icon add" /> */}
                             {check ?
                                 <CheckOutlined
                                     className="icon"
-                                    onClick={() => removeMyListClick(movie, setCheck(!check))}
+                                    onClick = {() => removeMovieFromWatchList(movie, setCheck(!check))}
                                 /> :
                                 <Add
                                     className="icon add"
-                                    onClick={() => addMyListClick(movie, setCheck(!check))}
+                                    onClick = {() => addMovieToWatchList(movie, setCheck(!check))}
                                 />
                             }
                             <ThumbUpAltOutlined className="icon like" />
                             <ThumbDownOutlined className="icon dislike" />
-                            <Link to={{ pathname: "/info", movie: movie }} className="link">
+                            <Link to={{ pathname: "/info?"+movie._id, movie: movie }} className="link">
                                 <KeyboardArrowDown className="icon moreInfo" />
                             </Link>
                         </div>

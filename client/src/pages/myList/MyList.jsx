@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import {
     PlayArrow,
@@ -10,29 +10,23 @@ import {
 } from "@material-ui/icons";
 import { Link } from 'react-router-dom';
 import "./myList.scss";
-import ReactPlayer from 'react-player/lazy';
-const MyList = ( ) => {
-    const movies = JSON.parse(localStorage.getItem("my-list"));
-    const [myList, setMyList] = useState(movies);
-    const saveToLocalStorage = (items) => {
-        localStorage.setItem('my-list', JSON.stringify(items));
-    };
-    const removeMyList = (movie) => {
-        const newMyList = myList.filter(
-            (list) => list._id !== movie._id
-        );
-        setMyList(newMyList);
-        saveToLocalStorage(newMyList);
-    };
-    console.log(myList);
+import { FavouriteContext } from "../../favouriteContext/FavouriteContext";
+const MyList = () => {
+    const [show, setShow] = useState(false);
+    const { removeMovieFromWatchList, watchList } = useContext(FavouriteContext);
+    useEffect(() => {
+        console.log(!watchList.length > 0);
+    }, [watchList])
     return (
         <>
-            <Navbar />
-            <h1 className="title-list">My List</h1>
+        <Navbar />
+        <h1 className="title-list">My List</h1>
+        {!watchList.length > 0 ? <h1 className="empty">You don't have a favorite movie yet !!</h1> : (
+            <>
             <div className="my-list">
-                {movies.map((movie) => (
+                {watchList.map((movie) => (
                     <div className="show-list" >
-                        <Link to={{pathname: "/info", movie: movie}}>
+                        <Link to={{ pathname: "/info", movie: movie }}>
                             <img src={movie.imgSm} alt={movie.title} className="poster" />
                         </Link>
                         <div className="itemInfo">
@@ -40,7 +34,12 @@ const MyList = ( ) => {
                                 <Link to={{ pathname: "/watch", movie: movie }}>
                                     <PlayArrow className="icon play" />
                                 </Link>
-                                <CheckOutlined className="icon add" onClick={() => removeMyList(movie)} />
+                                <CheckOutlined
+                                    className="icon add"
+                                    onClick={() => removeMovieFromWatchList(movie._id)}
+                                    //onClick={() => window.location.reload(false)}
+                                />
+
                                 <ThumbUpAltOutlined className="icon like" />
                                 <ThumbDownOutlined className="icon dislike" />
                                 <Link to={{ pathname: "/info", movie: movie }} className="link">
@@ -62,7 +61,10 @@ const MyList = ( ) => {
                     </div>
                 ))}
             </div>
+            </>
+            )}
         </>
+
     )
 }
 

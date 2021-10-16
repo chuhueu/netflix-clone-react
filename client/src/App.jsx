@@ -34,13 +34,13 @@ const App = () => {
             <Route path="/series">
               <Home type="series" />
             </Route>
-            <Route path="/watch">
+            <Route path="/watch?:watchID">
               <Watch />
             </Route>
             <Route path="/edit">
               <Edit />
             </Route>
-            <Route path="/info">
+            <Route path="/info?:infoID">
               <Info />
             </Route>
             <Route path="/search">

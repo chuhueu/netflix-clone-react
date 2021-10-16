@@ -7,7 +7,7 @@ import "./watch.scss";
 const Watch = () => {
     const location = useLocation();
     const movie = location.movie;
-    console.log(location);
+    console.log(location.pathname);
     return (
         <div className="watch">
            <Link to="/">
