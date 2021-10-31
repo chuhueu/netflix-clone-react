@@ -4,12 +4,11 @@ const Movie = require("../models/Movie");
 //CREATE
 router.post("/", async (req, res) => {
   const newMovie = new Movie(req.body);
-
   try {
     const sendMovie = await newMovie.save();
     res.status(201).json(sendMovie);
   } catch (error) {
-    res.status(409).json({message: error.message});
+    res.status(409).json({ message: error.message });
   }
 });
 //UPDATE
@@ -25,7 +24,29 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(error);
   }
 });
-
+//UPDATE COMMENT
+router.put("/comment/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updateComment = await Movie.findByIdAndUpdate(
+      id,
+      // {$push: {
+      //   "comments": req.body.comments
+      // }},
+      {$push: {
+        "comments": {
+          username: req.body.comments.username,
+          comment: req.body.comments.comment,
+          image: req.body.comments.image
+        }
+      }},
+      {new: true,}
+    );
+    res.status(200).json(updateComment);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 //DELETE
 router.delete("/:id", async (req, res) => {
   try {
@@ -36,14 +57,14 @@ router.delete("/:id", async (req, res) => {
   }
 });
 //GET ALL
-router.get("/", async (req, res) =>{
+router.get("/", async (req, res) => {
   try {
     const getMovies = await Movie.find();
     res.status(200).json(getMovies.reverse());
   } catch (error) {
     res.status(500).json(error);
   }
-})
+});
 
 //GET FIND ID
 router.get("/find/:id", async (req, res) => {
@@ -56,15 +77,17 @@ router.get("/find/:id", async (req, res) => {
 });
 //GET FIND BY NAME
 //req.query chứa các tham số truy vấn URL (sau phần ?trong URL).
-router.get("/search", async (req,res) => {
-    try {
-      const searchFiled = req.query.title;
-      const searchMovie = await Movie.find({title: {$regex: searchFiled, $options: '$i'}});
-      res.status(200).json(searchMovie)
-    } catch (error) {
-      res.status(500).json(error);
-    }
-})
+router.get("/search", async (req, res) => {
+  try {
+    const searchFiled = req.query.title;
+    const searchMovie = await Movie.find({
+      title: { $regex: searchFiled, $options: "$i" },
+    });
+    res.status(200).json(searchMovie);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 //GET RANDOM
 router.get("/random", async (req, res) => {
@@ -82,12 +105,10 @@ router.get("/random", async (req, res) => {
     //     { $sample: { size: 1 } },
     //   ]);
     // }
-    movie = await Movie.aggregate([
-      {$sample: {size: 1}}
-    ])
+    movie = await Movie.aggregate([{ $sample: { size: 1 } }]);
     res.status(200).json(movie);
   } catch (error) {
-      res.status(500).json(error);
+    res.status(500).json(error);
   }
 });
 

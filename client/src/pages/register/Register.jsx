@@ -21,7 +21,7 @@ export default function Register() {
         const res = await axios.get("users", {
           headers: {
             token:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2MyYTg2ODE3NjNmODEwM2UzYjBiMCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzMzQ5OTg0MywiZXhwIjoxNjMzOTMxODQzfQ.G0Afn6YMLz3el69ri5c-hx0bmY8R-4hjVRvB8X_wpCY"
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2MyYTg2ODE3NjNmODEwM2UzYjBiMCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNTI2NjMyNCwiZXhwIjoxNjM1Njk4MzI0fQ.aiT3ax3Q2nlMP6oj5ZqXTKa2YQT6aO7zdicY7TYHJ6g"
           }
         })
         setListUser(res.data);
@@ -98,7 +98,7 @@ export default function Register() {
         ) : (
           <>
           <form className="input">
-            <input type="username" placeholder="username" ref={usernameRef} />
+            <input type="username" placeholder="username" ref={usernameRef} style={{marginRight: "3px"}}/>
             <input type="password" placeholder="password" ref={passwordRef} />
             <button className="registerButton" onClick={handleFinish}>
               Start

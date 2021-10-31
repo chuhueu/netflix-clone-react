@@ -48,19 +48,12 @@ const Search = () => {
                 {!showSearch ? <h1>No Found</h1> :
                     movies.map((movie) => {
                         return (
-                            <Link to={{ pathname: '/info?'+movie._id, movie: movie }}>
+                            <Link to={{ pathname: '/info/'+movie._id, movie: movie }}>
                                 <img src={movie.imgSm} alt={movie.title} key={movie._id} className="poster" />
                             </Link>
                         )
                     })
                 }
-                {/* {movies.map((movie) => {
-                    return (
-                        <Link to={{pathname: '/watch', movie: movie }}>
-                            <img src={movie.imgSm} alt={movie.title} className="poster" key={movie._id}/>
-                        </Link>
-                    )
-                })} */}
             </div>
         </>
     )

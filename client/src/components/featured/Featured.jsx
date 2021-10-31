@@ -68,13 +68,13 @@ const Featured = ({ type, setGenre }) => {
                         </button>
                     </span>
                     <div className="buttons">
-                        <Link to={{pathname: "/watch?"+movie._id, movie: movie}} className="link">
+                        <Link to={{pathname: "/watch/"+movie._id, movie: movie}} className="link">
                             <button className="play">
                                 <PlayArrow />
                                 <span>Play</span>
                             </button>
                         </Link>
-                        <Link to={{pathname: "/info?"+movie._id, movie: movie}} className="link">
+                        <Link to={{pathname: "/info/"+movie._id, movie: movie}} className="link">
                             <button className="more">
                                 <InfoOutlined />
                                 <span>Info</span>

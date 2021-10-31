@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 import { FavouriteContext } from "../../favouriteContext/FavouriteContext";
 const Listitem = ({ index, item }) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [movie, setMovie] = useState([]);
+    const [movie, setMovie] = useState({});
     //const [delayHandler, setDelayHandler] = useState(null);
     const [check, setCheck] = useState(false);
     const {
@@ -54,7 +54,6 @@ const Listitem = ({ index, item }) => {
     }, [item]);
 
     return (
-        // <Link to={{ pathname: "/info", movie: movie }}>
         <div
             className="listItem"
             style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
@@ -73,23 +72,22 @@ const Listitem = ({ index, item }) => {
                     />
                     <div className="itemInfo">
                         <div className="icons">
-                            <Link to={{ pathname: "/watch?"+movie._id, movie: movie }}>
+                            <Link to={{ pathname: "/watch/" + movie?._id, movie: movie }}>
                                 <PlayArrow className="icon play" />
                             </Link>
-                            {/* <Add className="icon add" /> */}
                             {check ?
                                 <CheckOutlined
                                     className="icon"
-                                    onClick = {() => removeMovieFromWatchList(movie, setCheck(!check))}
+                                    onClick={() => removeMovieFromWatchList(movie, setCheck(!check))}
                                 /> :
                                 <Add
                                     className="icon add"
-                                    onClick = {() => addMovieToWatchList(movie, setCheck(!check))}
+                                    onClick={() => addMovieToWatchList(movie, setCheck(!check))}
                                 />
                             }
                             <ThumbUpAltOutlined className="icon like" />
                             <ThumbDownOutlined className="icon dislike" />
-                            <Link to={{ pathname: "/info?"+movie._id, movie: movie }} className="link">
+                            <Link to={{ pathname: "/info/" + movie._id, movie: movie }} className="link">
                                 <KeyboardArrowDown className="icon moreInfo" />
                             </Link>
                         </div>
@@ -109,7 +107,6 @@ const Listitem = ({ index, item }) => {
             )}
 
         </div>
-        //</Link>
 
     )
 }

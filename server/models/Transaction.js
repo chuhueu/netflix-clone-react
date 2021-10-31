@@ -8,7 +8,8 @@ const ListTransaction = new mongoose.Schema(
         username: {type: String},
         amount: {type: Number},
         status: {type: String}
-    }
+    },
+    { timestamps: true }
 );
 
 module.exports = mongoose.model("transaction", ListTransaction);

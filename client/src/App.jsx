@@ -34,13 +34,13 @@ const App = () => {
             <Route path="/series">
               <Home type="series" />
             </Route>
-            <Route path="/watch?:watchID">
+            <Route path="/watch/:watchID" render={(props) => <Watch {...props} /> }>
               <Watch />
             </Route>
             <Route path="/edit">
               <Edit />
             </Route>
-            <Route path="/info?:infoID">
+            <Route path="/info/:infoID" render={(props) => <Info {...props} />}>
               <Info />
             </Route>
             <Route path="/search">

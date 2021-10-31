@@ -1,0 +1,92 @@
+.comment {
+  margin-left: 80px;
+  margin-top: 60px;
+}
+.tittle {
+  color: #fff;
+}
+.commentList {
+  display: flex;
+  margin: 15px 0px;
+  color: #fff;
+}
+.avatar {
+  width: 60px;
+  float: left;
+  margin-right: 10px;
+}
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.commentSection {
+  color: #fff;
+  background-color: #3a3b3c;
+  font-size: 18px;
+  padding: 5px 5px;
+  border-radius: 5px;
+  max-width: 80%;
+}
+.name {
+  margin: 0px 0px;
+  font-size: 20px;
+}
+.comments {
+  margin: 5px 0px;
+}
+
+.userCard {
+  display: flex;
+  color: #e4e5eb;
+}
+.userAvatar {
+  width: 60px;
+  float: left;
+  margin-right: 10px;
+}
+#userComment {
+  min-width: 50px;
+  border: none;
+}
+.userCard > .commentSection {
+  width: 100%;
+}
+.commentSection > input {
+  color: #e4e6eb;
+  width: calc(100% - 73px);
+  height: 100%;
+  background-color: #3a3b3c;
+  border: none;
+  font-size: 18px;
+  line-height: 20px;
+}
+/* ::placeholder {
+  color: #e4e6eb;
+  opacity: 1;
+  font-size: 18px;
+} */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+input:focus::placeholder {
+  color: transparent;
+}
+.submitSection {
+  box-sizing: border-box;
+  font-size: 37px;
+  float: right;
+}
+.commentSection > button {
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(51, 51, 51, 0.5);
+  color: white;
+}
+.commentSection > button:hover {
+  background-color: #e50914;
+  transition: 0.2s;
+}

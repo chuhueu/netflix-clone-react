@@ -1,13 +1,31 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { ArrowBackOutlined } from "@material-ui/icons";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import axios from '../../axios';
 import ReactPlayer from 'react-player/lazy';
 import "./watch.scss";
 
 const Watch = () => {
-    const location = useLocation();
-    const movie = location.movie;
-    console.log(location.pathname);
+    const [movie, setMovie] = useState({});
+    const params = useParams();
+    console.log(params.watchID);
+     useEffect(() => {
+         const getMovie = async () => {
+             try {
+                 const res = await axios.get("movies/find/" + params.watchID, {
+                     headers: {
+                         token:
+                             "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
+                     },
+                 });
+                 setMovie(res.data);
+                 console.log(res.data);
+             } catch (error) {
+                 console.log(error);
+             }
+         }
+         getMovie();
+     },[params.watchID]);
     return (
         <div className="watch">
            <Link to="/">

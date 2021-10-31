@@ -24,11 +24,10 @@ function ProfileScreen() {
                         src="https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png"
                         alt=""
                     />
-
                     <div className="profileScreen__details">
                         <h2>{user.email}</h2>
                         <div className="profileScreen__plans">
-                            <h3>Plans</h3>
+                            <h3>Current plans: {JSON.parse(localStorage.getItem("plans"))}</h3>
                             < PlansScreen />
                             <Link to="/login">
                                 <button className="profileScreen__signOut" onClick={() => dispatch(logout())}>Sign Out</button>

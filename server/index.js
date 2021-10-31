@@ -14,6 +14,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 const URL = "mongodb+srv://testBoy:hieu123@cluster0.qhhal.mongodb.net/Netflix?retryWrites=true&w=majority";
 mongoose
@@ -36,7 +37,6 @@ app.use("/api/transaction", transactionRoute);
 app.get("/", (req, res) => {
   res.send("APP IS RUNNING")
 })
-
 app.listen(process.env.PORT || 8080, () => {
   console.log("Backend server is running!");
 });
