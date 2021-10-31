@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './comment.css'
-import data from './data';
 import { FaArrowUp } from 'react-icons/fa';
 import axios from '../../axios';
 import { useParams } from 'react-router-dom';
-const Comment = (movieID) => {
-    const [people, setPeople] = useState(data);
+const Comment = () => {
     const [comment, setComment] = useState([]);
     const [displayComment, setDisplayComment] = useState([]);
     const params = useParams();
@@ -17,7 +15,7 @@ const Comment = (movieID) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.put("/movies/comment/"+params.infoID, {
+            const res = await axios.put("/movies/comment/" + params.infoID, {
                 headers: {
                     token:
                         "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
@@ -49,12 +47,12 @@ const Comment = (movieID) => {
             }
         }
         getComments();
-    },[params]);
+    }, [params]);
     return (
         <div className="comment">
             <h2 className="tittle">Comments</h2>
-            {displayComment.map((item) => {
-                return <div className='commentList' >
+            {displayComment && displayComment.map((item) => {
+                return <div className='commentList' key={item._id} >
                     <div className='avatar'>
                         <img className='image' src={item.image} alt={item.username} />
                     </div>
@@ -77,7 +75,7 @@ const Comment = (movieID) => {
                         id="userComment"
                         placeholder='Submit a comment here...'
                         onChange={handleChange}
-                        />
+                    />
                     <button onClick={handleSubmit} className="submitSection">
                         <FaArrowUp />
                     </button>

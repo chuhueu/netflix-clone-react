@@ -39,7 +39,6 @@ const Info = () => {
 
     return (
         <>
-        {console.log(parseInt(movie.rate))}
             <Navbar />
             <div className="coverWrapper">
                 <div className="cover" style={{

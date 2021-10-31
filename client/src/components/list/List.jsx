@@ -32,8 +32,6 @@ const List = ({list}) => {
                         <ListItem
                             index={i}
                             item={item}
-                            // addMyListClick = {addMyList}
-                            // removeMyListClick = {removeMyList}
                         />
                    ))}
                 </div>
