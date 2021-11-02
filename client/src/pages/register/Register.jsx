@@ -18,12 +18,8 @@ export default function Register() {
   useEffect(() => {
     const getListUser = async () => {
       try {
-        const res = await axios.get("users", {
-          headers: {
-            token:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2MyYTg2ODE3NjNmODEwM2UzYjBiMCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNTI2NjMyNCwiZXhwIjoxNjM1Njk4MzI0fQ.aiT3ax3Q2nlMP6oj5ZqXTKa2YQT6aO7zdicY7TYHJ6g"
-          }
-        })
+        const res = await axios.get("users");
+        console.log(res.data);
         setListUser(res.data);
       } catch (error) {
         console.log(error);
@@ -50,7 +46,7 @@ export default function Register() {
   const handleFinish = async (e) => {
     e.preventDefault();
     let str = "";
-    listUser.map((list) => {
+    listUser.forEach((list) => {
       str += list.username;
     })
     let checkUsername= str.includes(usernameRef.current.value);

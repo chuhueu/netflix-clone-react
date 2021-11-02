@@ -9,22 +9,22 @@ export default function FeaturedInfo() {
   const date = new Date().getMonth();
   const MONTHS = useMemo(
     () => [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
+      "January",
+      "February",
+      "March",
+      "April",
       "May",
-      "Jun",
-      "Jul",
-      "Agu",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
     ],
     []
   );
-  const [monthTrans, setMonthTrans] = useState([{name: MONTHS[date], amount: total}]);
+  const [monthTrans, setMonthTrans] = useState([{ name: MONTHS[date], amount: total }]);
   useEffect(() => {
     const getNewTransactions = async () => {
       try {
@@ -47,8 +47,11 @@ export default function FeaturedInfo() {
           headers: {
             token: "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
-        })
-        res.data.map((item) => {
+        });
+        const statsList = res.data.sort(function (a, b) {
+          return a._id - b._id;
+        });
+        statsList.forEach((item) => {
           setMonthTrans((prev) => [
             ...prev,
             { name: MONTHS[item._id - 1], "amount": item.total },
@@ -60,18 +63,18 @@ export default function FeaturedInfo() {
     }
     getStatsTransaction();
   }, [MONTHS])
+  console.log(monthTrans);
   useEffect(() => {
     let sum = 0;
     newTransactions.forEach((transaction) => {
       sum += transaction.amount;
-      //let date = new Date(transaction.date);
     })
     setTotal(sum);
   }, [newTransactions])
   return (
     <div className="featured">
       <div className="featuredItem">
-        <span className="featuredTitle">Total</span>
+        <span className="featuredTitle">Revenue</span>
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">${total}.00</span>
           <span className="featuredMoneyRate">
@@ -81,22 +84,24 @@ export default function FeaturedInfo() {
         <span className="featuredSub">Compared to last month</span>
       </div>
       <div className="featuredItem">
-        <span className="featuredTitle">{monthTrans[monthTrans.length-1].name}</span>
+        <span className="featuredTitle">{MONTHS[date]}</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">${monthTrans[monthTrans.length-1].amount}.00</span>
+          <span className="featuredMoney">${monthTrans[monthTrans.length - 1].amount}.00</span>
           <span className="featuredMoneyRate">
             -1.4 <ArrowDownward className="featuredIcon negative" />
           </span>
         </div>
+        <span className="featuredSub">Compared to last month</span>
       </div>
       <div className="featuredItem">
-        <span className="featuredTitle">Cost</span>
+        <span className="featuredTitle">{MONTHS[date - 1]}</span>
         <div className="featuredMoneyContainer">
-          <span className="featuredMoney">$2,225</span>
+          <span className="featuredMoney">${total - monthTrans[monthTrans.length - 1].amount}.00</span>
           <span className="featuredMoneyRate">
             +2.4 <ArrowUpward className="featuredIcon" />
           </span>
         </div>
+        <span className="featuredSub">Compared to last month</span>
       </div>
     </div>
   );

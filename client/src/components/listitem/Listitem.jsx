@@ -16,21 +16,21 @@ import { FavouriteContext } from "../../favouriteContext/FavouriteContext";
 const Listitem = ({ index, item }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [movie, setMovie] = useState({});
-    //const [delayHandler, setDelayHandler] = useState(null);
+    const [delayHandler, setDelayHandler] = useState(null);
     const [check, setCheck] = useState(false);
     const {
         addMovieToWatchList,
         removeMovieFromWatchList,
     } = useContext(FavouriteContext);
     const handleMouseEnter = () => {
-        // setDelayHandler(setTimeout(() => {
-        //     setIsHovered(true);
-        // }, 100))
+        setDelayHandler(setTimeout(() => {
+            setIsHovered(true);
+        }, 500))
         setIsHovered(true);
     }
     const handleMouseLeave = () => {
         setIsHovered(false);
-        //clearTimeout(delayHandler);
+        clearTimeout(delayHandler);
     }
 
 
@@ -50,7 +50,7 @@ const Listitem = ({ index, item }) => {
                 }
             }
             getMovie();
-        }, 1000);
+        }, 500);
     }, [item]);
 
     return (
@@ -65,7 +65,7 @@ const Listitem = ({ index, item }) => {
                 <>
                     <ReactPlayer
                         controls playing={true} loop={true}
-                        //url={movie.trailer}
+                        url={movie.trailer}
                         className="trailer"
                         width='100%'
                         height='60%'
