@@ -60,6 +60,7 @@ const Listitem = ({ index, item }) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
+            
             <img src={movie?.imgSm} alt={movie?.title} className="poster" />
             {isHovered && (
                 <>

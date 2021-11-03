@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./topbar.css";
-import { NotificationsNone, Language, Settings } from "@material-ui/icons";
+import { NotificationsNone, Language, Settings, Search } from "@material-ui/icons";
 import { logout } from "../../context/authContext/AuthActions";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import { Link } from "react-router-dom";
@@ -14,6 +14,7 @@ export default function Topbar() {
           <span className="logo">28's Team</span>
         </div>
         <div className="topRight">
+
           <div className="topbarIconContainer">
             <NotificationsNone />
             <span className="topIconBadge">2</span>
