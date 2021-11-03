@@ -14,7 +14,6 @@ export default function Topbar() {
           <span className="logo">28's Team</span>
         </div>
         <div className="topRight">
-
           <div className="topbarIconContainer">
             <NotificationsNone />
             <span className="topIconBadge">2</span>
