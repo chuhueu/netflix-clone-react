@@ -42,6 +42,7 @@ const Home = ({ type }) => {
             }
         }
         getRandomLists();
+        console.log(`lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`);
     }, [type, genre])
 
     return (

@@ -23,11 +23,10 @@ router.delete('/:id', async (req, res) =>{
 })
 //GET ALL
 /**
-req.paramschứa các tham số tuyến đường (trong phần đường dẫn của URL) và req.query chứa các tham số truy vấn URL (sau phần ?trong URL). */
+req.params chứa các tham số tuyến đường (trong phần đường dẫn của URL) và req.query chứa các tham số truy vấn URL (sau phần ?trong URL). */
 router.get('/', async (req, res) =>{
     const typeQuery = req.query.type;
     const genreQuery = req.query.genre;
-    console.log(typeQuery ," ", genreQuery);
     let list =[];
     try {
         if(typeQuery){
