@@ -1,6 +1,6 @@
 import React from "react";
 import { InfoOutlined, PlayArrow } from "@material-ui/icons";
-import axios from "axios";
+import axios from "../../axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./featured.scss";

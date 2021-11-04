@@ -1,16 +1,21 @@
 import { useContext, useState } from "react";
 import { login } from "../../authContext/apiCalls";
 import { AuthContext } from "../../authContext/AuthContext";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 import "./login.scss";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { dispatch } = useContext(AuthContext);
+  const { dispatch, error } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     login({ email, password }, dispatch);
+    if(error){
+      const element = <p>Wrong password or username</p>
+      ReactDOM.render(element, document.getElementById('error'));
+    }
   };
   return (
     <div className="login">
@@ -51,6 +56,7 @@ export default function Login() {
             <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener noreferrer" className="learn_more"><b>Learn more</b></a>
           </small>
         </form>
+        <div id="error"></div>
       </div>
     </div>
   );

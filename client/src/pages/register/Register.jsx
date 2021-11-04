@@ -19,7 +19,6 @@ export default function Register() {
     const getListUser = async () => {
       try {
         const res = await axios.get("users");
-        console.log(res.data);
         setListUser(res.data);
       } catch (error) {
         console.log(error);

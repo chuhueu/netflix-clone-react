@@ -4,11 +4,11 @@ import Navbar from '../../components/navbar/Navbar';
 import Featured from '../../components/featured/Featured';
 import List from '../../components/list/List';
 import Footer from '../../components/footer/Footer';
-import axios from "axios";
+import axios from "../../axios";
 const Home = ({ type }) => {
     const [lists, setLists] = useState([]);
     const [genre, setGenre] = useState(null);
-    const user = JSON.parse(localStorage.getItem("user"));
+    //const user = JSON.parse(localStorage.getItem("user"));
 
     // let date1 = new Date(user.createdAt);
     // let date2 = new Date(new Date().toISOString());
@@ -42,7 +42,6 @@ const Home = ({ type }) => {
             }
         }
         getRandomLists();
-        console.log(`lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`);
     }, [type, genre])
 
     return (
