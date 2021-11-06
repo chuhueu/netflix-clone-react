@@ -1,3 +1,3 @@
 # deploy app
 
-# app host:
+# app host: https://netflix-28-clone.netlify.app/

@@ -26,12 +26,12 @@ const MyList = () => {
                     <div className="my-list">
                         {watchList.map((movie) => (
                             <div className="show-list" >
-                                <Link to={{ pathname: "/info?" + movie._id, movie: movie }}>
+                                <Link to={{ pathname: "/info/" + movie._id, movie: movie }}>
                                     <img src={movie.imgSm} alt={movie.title} className="poster" />
                                 </Link>
                                 <div className="itemInfo">
                                     <div className="icons">
-                                        <Link to={{ pathname: "/watch?" + movie._id, movie: movie }}>
+                                        <Link to={{ pathname: "/watch/" + movie._id, movie: movie }}>
                                             <PlayArrow className="icon play" />
                                         </Link>
                                         <CheckOutlined
@@ -41,7 +41,7 @@ const MyList = () => {
 
                                         <ThumbUpAltOutlined className="icon like" />
                                         <ThumbDownOutlined className="icon dislike" />
-                                        <Link to={{ pathname: "/info?"+ movie._id, movie: movie }} className="link">
+                                        <Link to={{ pathname: "/info/"+ movie._id, movie: movie }} className="link">
                                             <KeyboardArrowDown className="icon moreInfo" />
                                         </Link>
                                     </div>

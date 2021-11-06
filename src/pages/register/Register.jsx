@@ -83,7 +83,7 @@ export default function Register() {
         {(check) ? (
           <>
           <div className="input">
-            <input type="email" placeholder="email address" ref={emailRef} />
+            <input type="email" placeholder="Email address" ref={emailRef} />
             <button className="registerButton" onClick={handleStart}>
               Get Started
             </button>
@@ -93,8 +93,8 @@ export default function Register() {
         ) : (
           <>
           <form className="input">
-            <input type="username" placeholder="username" ref={usernameRef} style={{marginRight: "3px"}}/>
-            <input type="password" placeholder="password" ref={passwordRef} />
+            <input type="username" placeholder="Username" ref={usernameRef} style={{marginRight: "3px"}}/>
+            <input type="password" placeholder="Password" ref={passwordRef} />
             <button className="registerButton" onClick={handleFinish}>
               Start
             </button>
