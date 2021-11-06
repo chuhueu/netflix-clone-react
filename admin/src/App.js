@@ -23,6 +23,7 @@ import MovieList from "./pages/movieList/MovieList";
 import Movie from "./pages/movie/Movie";
 import NewMovie from "./pages/newMovie/NewMovie";
 
+
 function App() {
   const { user } = useContext(AuthContext);
   return (

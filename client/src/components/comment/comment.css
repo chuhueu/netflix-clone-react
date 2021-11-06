@@ -39,6 +39,7 @@
 .userCard {
   display: flex;
   color: #e4e5eb;
+  margin-top: 10px;
 }
 .userAvatar {
   width: 60px;

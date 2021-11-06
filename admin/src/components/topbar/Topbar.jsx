@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./topbar.css";
-import { NotificationsNone, Language, Settings } from "@material-ui/icons";
+import { NotificationsNone, Language, Settings, Search } from "@material-ui/icons";
 import { logout } from "../../context/authContext/AuthActions";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import { Link } from "react-router-dom";
