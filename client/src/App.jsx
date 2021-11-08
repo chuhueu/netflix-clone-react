@@ -17,16 +17,13 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path="/">
-          {user ? <Home /> : <Redirect to="/register" />}
+          <Home />
         </Route>
         <Route path="/register">
           {!user ? <Register /> : <Redirect to="/" />}
         </Route>
         <Route path="/login">{!user ? <Login /> : <Redirect to="/" />}</Route>
-        {/* <Route path="/">
-          {user ? <Home /> : <Redirect to="/register" />}
-        </Route> */}
-        {user && (
+        {!user ? (
           <>
             <Route path="/movies">
               <Home type="movie" />
@@ -34,23 +31,30 @@ const App = () => {
             <Route path="/series">
               <Home type="series" />
             </Route>
-            <Route path="/watch/:watchID" render={(props) => <Watch {...props} /> }>
-              <Watch />
-            </Route>
-            <Route path="/edit">
-              <Edit />
-            </Route>
-            <Route path="/info/:infoID" render={(props) => <Info {...props} />}>
-              <Info />
-            </Route>
-            <Route path="/search">
-              <Search />
-            </Route>
-            <Route path="/myList">
-              <MyList />
-            </Route>
           </>
-        )}
+        ) : <>
+          <Route path="/movies">
+            <Home type="movie" />
+          </Route>
+          <Route path="/series">
+            <Home type="series" />
+          </Route>
+          <Route path="/watch/:watchID">
+            <Watch />
+          </Route>
+          <Route path="/edit">
+            <Edit />
+          </Route>
+          <Route path="/info/:infoID">
+            <Info />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/myList">
+            <MyList />
+          </Route>
+        </>}
       </Switch>
     </Router>
   )

@@ -4,18 +4,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./featured.scss";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 const Featured = ({ type, setGenre }) => {
     const [movie, setMovie] = useState([]);
     const [readMore, setReadMore] = useState(false);
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(!user);
     useEffect(() => {
         const getRandomMovie = async () => {
             try {
-                const res = await axios.get(`movies/random?type=${type}`,{
-                    headers: {
-                      token:
-                      "Bearer "+JSON.parse(localStorage.getItem("user")).accessToken,
-                    },
-                  });
+                const res = await axios.get(`movies/random?type=${type}`);
                 setMovie(res.data[0]);
             } catch (error) {
                 console.log(error);
@@ -68,18 +67,82 @@ const Featured = ({ type, setGenre }) => {
                         </button>
                     </span>
                     <div className="buttons">
-                        <Link to={{pathname: "/watch/"+movie._id, movie: movie}} className="link">
-                            <button className="play">
-                                <PlayArrow />
-                                <span>Play</span>
-                            </button>
-                        </Link>
-                        <Link to={{pathname: "/info/"+movie._id, movie: movie}} className="link">
-                            <button className="more">
-                                <InfoOutlined />
-                                <span>Info</span>
-                            </button>
-                        </Link>
+                        {!user ? (
+                            <Popup
+                                trigger={
+                                    <button className="play">
+                                        <PlayArrow />
+                                        <span>Play</span>
+                                    </button>}
+                                modal
+                                nested
+                            >
+                                {close => (
+                                    <div className="modal">
+                                        <button className="close" onClick={close}>
+                                            &times;
+                                        </button>
+                                        <div className="header">Notification</div>
+                                        <div className="content">
+                                            Please register or sign in to use this function
+                                        </div>
+                                        <div className="actions">
+                                            <Link to="/register"
+                                                className="button"
+                                            >
+                                                Register
+                                            </Link>
+                                        </div>
+                                    </div>
+                                )}
+                            </Popup>
+                        ) : (
+                            <>
+                                <Link to={{ pathname: "/watch/" + movie._id, movie: movie }} className="link">
+                                    <button className="play">
+                                        <PlayArrow />
+                                        <span>Play</span>
+                                    </button>
+                                </Link>
+                            </>
+                        )}
+                        {!user ? (
+                            <Popup
+                                trigger={
+                                    <button className="more">
+                                        <InfoOutlined />
+                                        <span>Info</span>
+                                    </button>}
+                                modal
+                                nested
+                            >
+                                {close => (
+                                    <div className="modal">
+                                        <button className="close" onClick={close}>
+                                            &times;
+                                        </button>
+                                        <div className="header">Notification</div>
+                                        <div className="content">
+                                            Please register or sign in to use this function
+                                        </div>
+                                        <div className="actions">
+                                            <Link to="/register"
+                                                className="button"
+                                            >
+                                                Register
+                                            </Link>
+                                        </div>
+                                    </div>
+                                )}
+                            </Popup>
+                        ) : (
+                            <Link to={{ pathname: "/info/" + movie._id, movie: movie }} className="link">
+                                <button className="more">
+                                    <InfoOutlined />
+                                    <span>Info</span>
+                                </button>
+                            </Link>
+                        )}
                     </div>
                 </div>
                 {/* <div className="banner--fadeBottom"></div> */}

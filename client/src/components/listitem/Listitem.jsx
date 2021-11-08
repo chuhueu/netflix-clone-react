@@ -38,12 +38,7 @@ const Listitem = ({ index, item }) => {
         setTimeout(() => {
             const getMovie = async () => {
                 try {
-                    const res = await axios.get("movies/find/" + item, {
-                        headers: {
-                            token:
-                                "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
-                        },
-                    });
+                    const res = await axios.get("movies/find/" + item);
                     setMovie(res.data);
                 } catch (error) {
                     console.log(error);
