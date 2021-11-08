@@ -1,8 +1,8 @@
 import React from 'react';
-import './footer.css';
+import './footer.scss';
 // import { Button } from './Button';
 import { Link } from 'react-router-dom';
-import {Facebook, Instagram, Style, YouTube, Twitter, LinkedIn} from '@material-ui/icons';
+import { Facebook, Instagram, Style, YouTube, Twitter, LinkedIn } from '@material-ui/icons';
 function Footer() {
   return (
     <div className='footer-container'>
@@ -86,7 +86,7 @@ function Footer() {
               target='_blank'
               aria-label='Instagram'
             >
-             <Instagram />
+              <Instagram />
             </Link>
             <Link
               className='social-icon-link youtube'
@@ -94,7 +94,7 @@ function Footer() {
               target='_blank'
               aria-label='Youtube'
             >
-             <YouTube />
+              <YouTube />
             </Link>
             <Link
               className='social-icon-link twitter'

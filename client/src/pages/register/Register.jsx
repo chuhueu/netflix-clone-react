@@ -26,7 +26,7 @@ export default function Register() {
       }
     }
     getListUser();
-  },[])
+  }, [])
 
   const handleStart = () => {
     setEmail(emailRef.current.value);
@@ -34,11 +34,11 @@ export default function Register() {
     listUser.map((list) => {
       str += list.email;
     })
-    let checkEmail= str.includes(emailRef.current.value);
-    if(checkEmail === true){
+    let checkEmail = str.includes(emailRef.current.value);
+    if (checkEmail === true) {
       const element = <p>Email already registered! Please, try again</p>
       ReactDOM.render(element, document.getElementById('errorEmail'));
-    }else{
+    } else {
       setCheck(false);
       ReactDOM.render(<p></p>, document.getElementById('errorEmail'));
     }
@@ -49,8 +49,8 @@ export default function Register() {
     listUser.forEach((list) => {
       str += list.username;
     })
-    let checkUsername= str.includes(usernameRef.current.value);
-    if(checkUsername === true){
+    let checkUsername = str.includes(usernameRef.current.value);
+    if (checkUsername === true) {
       setCheck(false);
       const element = <p>Username already registered! Please, try again</p>
       ReactDOM.render(element, document.getElementById('errorUsername'));
@@ -83,24 +83,24 @@ export default function Register() {
         </p>
         {(check) ? (
           <>
-          <div className="input">
-            <input type="email" placeholder="email address" ref={emailRef} />
-            <button className="registerButton" onClick={handleStart}>
-              Get Started
-            </button>
-          </div>
-          <div id="errorEmail"></div>
+            <div className="input">
+              <input type="email" placeholder="Email address" ref={emailRef} />
+              <button className="registerButton" onClick={handleStart}>
+                Get Started
+              </button>
+            </div>
+            <div id="errorEmail"></div>
           </>
         ) : (
           <>
-          <form className="input">
-            <input type="username" placeholder="username" ref={usernameRef} style={{marginRight: "3px"}}/>
-            <input type="password" placeholder="password" ref={passwordRef} />
-            <button className="registerButton" onClick={handleFinish}>
-              Start
-            </button>
-          </form>
-          <div id="errorUsername"></div>
+            <form className="input">
+              <input type="username" placeholder="Username" ref={usernameRef} style={{ marginRight: "3px" }} />
+              <input type="password" placeholder="Password" ref={passwordRef} />
+              <button className="registerButton" onClick={handleFinish}>
+                Start
+              </button>
+            </form>
+            <div id="errorUsername"></div>
           </>
         )}
       </div>

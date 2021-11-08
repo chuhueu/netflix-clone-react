@@ -11,7 +11,7 @@
   /*Animation*/
   transition-timing-function: ease-in;
   transition: all 0.5s;
-  //font-family: 'Netflix Sans';
+  font-family: 'Netflix Sans';
   &.scrolled {
     background-color: var(--main-color);
   }

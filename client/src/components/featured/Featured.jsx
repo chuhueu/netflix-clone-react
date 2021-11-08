@@ -82,9 +82,9 @@ const Featured = ({ type, setGenre }) => {
                                         <button className="close" onClick={close}>
                                             &times;
                                         </button>
-                                        <div className="header">Notification</div>
+                                        <div className="header">Oops!</div>
                                         <div className="content">
-                                            Please register or sign in to use this function
+                                            You are not logged in. Please login to use this feature
                                         </div>
                                         <div className="actions">
                                             <Link to="/register"
@@ -121,9 +121,9 @@ const Featured = ({ type, setGenre }) => {
                                         <button className="close" onClick={close}>
                                             &times;
                                         </button>
-                                        <div className="header">Notification</div>
+                                        <div className="header">Oops!</div>
                                         <div className="content">
-                                            Please register or sign in to use this function
+                                            You are not logged in. Please login to use this feature
                                         </div>
                                         <div className="actions">
                                             <Link to="/register"

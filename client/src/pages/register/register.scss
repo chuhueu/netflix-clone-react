@@ -1,4 +1,7 @@
+@import "../../app.scss";
+
 .register {
+  font-family: Netflix Sans;
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
@@ -23,11 +26,11 @@
       }
 
       .loginButton {
-        background-color: red;
+        background-color: #e50519;
         border: none;
         color: white;
         border-radius: 5px;
-        padding: 5px 15px;
+        padding: 10px 20px;
         font-size: 16px;
         font-weight: 500;
         cursor: pointer;
@@ -75,12 +78,13 @@
         height: 100%;
         border: none;
         padding: 0 10px;
+        font-size: 19px;
       }
 
       .registerButton {
         flex: 3;
         height: 100%;
-        background-color: red;
+        background-color: #e50519;
         border: none;
         color: white;
         font-size: 19px;
@@ -90,6 +94,9 @@
           transition: 0.2s;
         }
       }
+    }
+    .input ::placeholder {
+      font-size:19px;
     }
   }
 }

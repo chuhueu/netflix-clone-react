@@ -1,6 +1,7 @@
 @import "../../app.scss";
 
 .featured {
+  font-family: 'Netflix Sans';
   height: 100vh;
   color: white;
   position: relative;
@@ -17,11 +18,14 @@
 
     select {
       cursor: pointer;
-      background-color: var(--main-color);
-      border: 1px solid white;
+      background-color: rgba(0,0,0,0.7);
+      border: none;
+      border-radius:2px;
       color: white;
       margin-left: 20px;
-      padding: 5px;
+      padding: 10px;
+      font-size:23px;
+      justify-content: center;
     }
   }
 
@@ -65,7 +69,7 @@
         background: transparent;
         cursor: pointer;
         border-color: transparent;
-        color: hsl(209, 23%, 60%);
+        color: #e40519;
         margin-left: -5px;
       }
       margin: 20px 0px;
@@ -117,25 +121,30 @@
     }
   }
 }
+
+// POPUP
+
 .modal {
+  font-family: Netflix Sans;
   font-size: 12px;
+  width: 100%;
 }
 .modal > .header {
   width: 100%;
-  border-bottom: 1px solid gray;
-  font-size: 18px;
+  font-size: 23px;
   text-align: center;
-  padding: 5px;
+  padding: 5px 0px;
+
 }
 .modal > .content {
   width: 100%;
-  padding: 10px 5px;
-  font-size: 20px;
+  padding: 20px 0px 10px 0px;
+  font-size: 18px;
+  text-align: center;
 }
 .modal > .actions {
   width: 100%;
-  padding: 10px 5px;
-  margin: auto;
+  padding: 15px 0px;
   text-align: center;
 }
 .modal > .close {
@@ -144,18 +153,24 @@
   display: block;
   padding: 2px 5px;
   line-height: 20px;
-  right: -10px;
-  top: -10px;
-  font-size: 24px;
+  right: 10px;
+  top: 10px;
+  font-size: 30px;
   background: #ffffff;
   border-radius: 18px;
-  border: 1px solid #cfcece;
+  border: none;
 }
+.modal > .close:hover {
+  color: #e40519;
+}
+
 .modal > .actions .button {
   cursor: pointer;
   text-decoration: none;
-  font-size: 20px;
-  padding: 4px;
-  background: bisque;
+  font-size: 23px;
+  padding: 7px 12px;
+  background: #e40915;
+  color: #fff;
+  border-radius: 5px;
 }
 
