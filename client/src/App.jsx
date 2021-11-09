@@ -31,6 +31,10 @@ const App = () => {
             <Route path="/series">
               <Home type="series" />
             </Route>
+            <Route path="/search">
+            <Search />
+          </Route>
+            
           </>
         ) : <>
           <Route path="/movies">
