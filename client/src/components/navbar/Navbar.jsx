@@ -28,7 +28,6 @@ const Navbar = () => {
         }
     };
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
     useEffect(() => {
         window.addEventListener("scroll", transitionNavbar);
         return () => window.removeEventListener("scroll", transitionNavbar);

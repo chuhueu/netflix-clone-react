@@ -10,7 +10,6 @@ const Search = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [movies, setMovies] = useState([]);
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log(!user);
     useEffect(() => {
         if (searchTerm.length > 0) {
             const searchMovie = async () => {

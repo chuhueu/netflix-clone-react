@@ -35,7 +35,6 @@ const Listitem = ({ index, item }) => {
     clearTimeout(delayHandler);
   };
   const user = JSON.parse(localStorage.getItem("user"));
-  console.log(!user);
 
   useEffect(() => {
     setTimeout(() => {

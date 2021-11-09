@@ -10,7 +10,6 @@ const Featured = ({ type, setGenre }) => {
     const [movie, setMovie] = useState([]);
     const [readMore, setReadMore] = useState(false);
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log(!user);
     useEffect(() => {
         const getRandomMovie = async () => {
             try {
