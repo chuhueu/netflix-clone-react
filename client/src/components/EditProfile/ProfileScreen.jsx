@@ -1,20 +1,21 @@
 import React, { useContext } from 'react';
 import PlansScreen from './PlansScreen';
-import './profileScreen.css';
+import './profileScreen.scss';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../authContext/AuthContext';
 import { logout } from '../../authContext/AuthActions';
+import Footer from '../footer/Footer';
 function ProfileScreen() {
-    const {user} = useContext(AuthContext);
-    const {dispatch} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+    const { dispatch } = useContext(AuthContext);
     return (
         <div className="profileScreen">
             <Link to="/">
-            <img
-              className="logo"
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
-              alt=""
-            />
+                <img
+                    className="logo"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
+                    alt=""
+                />
             </Link>
 
             <div className="profileScreen__body">
@@ -27,7 +28,9 @@ function ProfileScreen() {
                     <div className="profileScreen__details">
                         <h2>{user.email}</h2>
                         <div className="profileScreen__plans">
-                            <h3>Current plans: {JSON.parse(localStorage.getItem("plans"))}</h3>
+                            <h3>Current plans: {JSON.parse(localStorage.getItem("plans"))}
+                                <br /> Day remaining:</h3>
+
                             < PlansScreen />
                             <Link to="/login">
                                 <button className="profileScreen__signOut" onClick={() => dispatch(logout())}>Sign Out</button>
@@ -36,7 +39,9 @@ function ProfileScreen() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
+
     )
 }
 export default ProfileScreen

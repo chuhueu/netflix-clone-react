@@ -31,10 +31,10 @@ const Search = () => {
         if (movies) {
             setShowSearch(true);
         }
-        if(movies === []){
+        if (movies === []) {
             setShowSearch(false);
         }
-    },[movies])
+    }, [movies])
 
     return (
         <>
@@ -43,49 +43,49 @@ const Search = () => {
                 <form className="search-form"
                     onSubmit={(e) => e.preventDefault()}
                     onChange={(e) => setSearchTerm(e.target.value)}>
-                    <input type="search" className="search" placeholder="Titles, people, genre" />
+                    <input type="search" className="search" placeholder="Titles, People, Genre ..." />
                 </form>
             </div>
             <div className="listitem">
-                {!showSearch ? <h1>No Found</h1> :
+                {!showSearch ? <h1>Not Found</h1> :
                     movies.map((movie) => {
                         return (
-                           <>
-                            {!user ? (
-                                <Popup
-                                trigger={
-                                    <img src={movie.imgSm} alt={movie.title} key={movie._id} className="poster" />
-                                }
-                                modal
-                                nested
-                            >
-                            {close => (
-                                <div className="modal">
-                                    <button className="close" onClick={close}>
-                                        &times;
-                                    </button>
-                                    <div className="header">Notification</div>
-                                    <div className="content">
-                                        Please register or sign in to use this function
-                                    </div>
-                                    <div className="actions">
-                                        <Link to="/register"
-                                            className="button"
-                                        >
-                                            Register
-                                        </Link>
-                                    </div>
-                                </div>
-                            )}
-                        </Popup>
-                    ) : (
-                            <Link to={{ pathname: '/info/'+movie._id, movie: movie }}>
-                                <img src={movie.imgSm} alt={movie.title} key={movie._id} className="poster" />
-                            </Link>
-                    )}
-                    </>
+                            <>
+                                {!user ? (
+                                    <Popup
+                                        trigger={
+                                            <img src={movie.imgSm} alt={movie.title} key={movie._id} className="poster" />
+                                        }
+                                        modal
+                                        nested
+                                    >
+                                        {close => (
+                                            <div className="modal">
+                                                <button className="close" onClick={close}>
+                                                    &times;
+                                                </button>
+                                                <div className="header">Notification</div>
+                                                <div className="content">
+                                                    Please register or sign in to use this function
+                                                </div>
+                                                <div className="actions">
+                                                    <Link to="/register"
+                                                        className="button"
+                                                    >
+                                                        Register
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </Popup>
+                                ) : (
+                                    <Link to={{ pathname: '/info/' + movie._id, movie: movie }}>
+                                        <img src={movie.imgSm} alt={movie.title} key={movie._id} className="poster" />
+                                    </Link>
+                                )}
+                            </>
                         )
-                        
+
                     })
                 }
             </div>

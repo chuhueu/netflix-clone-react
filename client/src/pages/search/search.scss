@@ -1,6 +1,7 @@
-
+@import "../../app.scss";
 body{
     background-color: #181818;
+    font-family: 'Netflix Sans';
 }
 .search-form{
     position: relative;
@@ -9,13 +10,21 @@ body{
         outline: none;
         position: absolute;
         top: -59px;
-        right: 256px;
-        border: 1px solid white;
-        background: #3c3535;
-        padding: 8px 22px;
-        color: white;
+        right: 260px;
+        border: none;
+        border-radius: 3px;
+        background: #fff;
+        padding: 8px 2px;
+        color: #000;
         z-index: 10;
+        width: 260px;
+        height:36px;
+        font-size: 23px;
       }
+      ::placeholder{
+        color: grey;
+}
+
 }
 .listitem{
     margin-top: 75px;

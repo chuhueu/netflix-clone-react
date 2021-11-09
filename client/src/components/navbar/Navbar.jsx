@@ -152,7 +152,15 @@ const Navbar = () => {
                         </div>
                     )
                         : (
-                            <Link to="/login"><button className="loginButton">Sign In</button></Link>
+                            <div className="right">
+
+                                <div className="form-control">
+                                    <Link to="/search" className="link">
+                                        <Search className="icon" />
+                                    </Link>
+                                </div>
+                                <Link to="/login"><button className="loginButton">Sign In</button></Link>
+                            </div>
                         )
                 }
 
