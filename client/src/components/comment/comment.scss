@@ -1,9 +1,12 @@
+@import "../../app.scss";
 .comment {
   margin-left: 80px;
   margin-top: 60px;
+  font-family: 'Netflix Sans';
 }
 .tittle {
   color: #fff;
+  margin-bottom: 25px;
 }
 .commentList {
   display: flex;
@@ -61,11 +64,11 @@
   font-size: 18px;
   line-height: 20px;
 }
-/* ::placeholder {
+::placeholder {
   color: #e4e6eb;
   opacity: 1;
   font-size: 18px;
-} */
+}
 input:focus,
 textarea:focus,
 select:focus {
@@ -89,4 +92,7 @@ input:focus::placeholder {
 .commentSection > button:hover {
   background-color: #e50914;
   transition: 0.2s;
+}
+#userComment{
+  height: 100%;
 }

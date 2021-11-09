@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ArrowDropDown, Notifications, Search,PlayArrow } from "@material-ui/icons";
+import { ArrowDropDown, Notifications, Search, PlayArrow } from "@material-ui/icons";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../authContext/AuthContext';
 import './navbar.scss';
@@ -9,8 +9,6 @@ import 'reactjs-popup/dist/index.css';
 
 const Navbar = () => {
     //const { user } = useContext(AuthContext);
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log(!user);
     const [kid, setKid] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const { dispatch } = useContext(AuthContext);
@@ -29,6 +27,8 @@ const Navbar = () => {
             setIsScrolled(false);
         }
     };
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user);
     useEffect(() => {
         window.addEventListener("scroll", transitionNavbar);
         return () => window.removeEventListener("scroll", transitionNavbar);
@@ -50,110 +50,113 @@ const Navbar = () => {
                     <Link to="/movies" className="link">
                         <span className="navbarmainLinks">Movies</span>
                     </Link>
-                    <span >New and Popular</span>
 
-                      
-                       {!user ? (
-                            <Popup
+                    {!user ? (
+                        <Popup
                             trigger={
-                            <span>My List</span>
+                                <span >New and Popular</span>
                             }
                             modal
                             nested
                         >
-                        {close => (
-                            <div className="modal">
-                                <button className="close" onClick={close}>
-                                    &times;
-                                </button>
-                                <div className="header">Notification</div>
-                                <div className="content">
-                                    Please register or sign in to use this function
+                            {close => (
+                                <div className="modal">
+                                    <button className="close" onClick={close}>
+                                        &times;
+                                    </button>
+                                    <div className="header">Oops!</div>
+                                    <div className="content">
+                                        You are not logged in. Please login to use this feature
+                                    </div>
+                                    <div className="actions">
+                                        <Link to="/register"
+                                            className="button"
+                                        >
+                                            Register
+                                        </Link>
+                                    </div>
                                 </div>
-                                <div className="actions">
-                                    <Link to="/register"
-                                        className="button"
-                                    >
-                                        Register
-                                    </Link>
-                                </div>
-                            </div>
-                        )}
-                    </Popup>
-                ) : (
-                    <Link to="/myList" className="link">
-                            <span>My List</span>
-                    </Link>
-                )}
-                       
-                     
-                        
-                </div>
-                <div className="right">
-
-                    <div className="form-control">
-                        <Link to="/search" className="link">
-                            <Search className="icon" />
+                            )}
+                        </Popup>
+                    ) : (
+                        <Link to="/myList" className="link">
+                            <span >New and Popular</span>
                         </Link>
-                    </div>
-
-                    <span className="kid" onClick={kidClick}>DVD
-                    </span>
-                    {kid && (
-                        <p className="kid_access">You have to be User</p>
                     )}
-                    <Notifications className="icon" />
+
+
+
                     {!user ? (
-                            <Popup
+                        <Popup
                             trigger={
-                                
+                                <span>My List</span>
+                            }
+                            modal
+                            nested
+                        >
+                            {close => (
+                                <div className="modal">
+                                    <button className="close" onClick={close}>
+                                        &times;
+                                    </button>
+                                    <div className="header">Oops!</div>
+                                    <div className="content">
+                                        You are not logged in. Please login to use this feature
+                                    </div>
+                                    <div className="actions">
+                                        <Link to="/register"
+                                            className="button"
+                                        >
+                                            Register
+                                        </Link>
+                                    </div>
+                                </div>
+                            )}
+                        </Popup>
+                    ) : (
+                        <Link to="/myList" className="link">
+                            <span>My List</span>
+                        </Link>
+                    )}
+
+                </div>
+                {
+                    user ? (
+                        <div className="right">
+
+                            <div className="form-control">
+                                <Link to="/search" className="link">
+                                    <Search className="icon" />
+                                </Link>
+                            </div>
+
+                            <span className="kid" onClick={kidClick}>DVD
+                            </span>
+                            {kid && (
+                                <p className="kid_access">You have to be User</p>
+                            )}
+                            <Notifications className="icon" />
+                            <Link to="/edit">
                                 <img
                                     src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
                                     alt=""
                                 />
-                
-                            }
-                            modal
-                            nested
-                        >
-                        {close => (
-                            <div className="modal">
-                                <button className="close" onClick={close}>
-                                    &times;
-                                </button>
-                                <div className="header">Notification</div>
-                                <div className="content">
-                                    Please register or sign in to use this function
-                                </div>
-                                <div className="actions">
-                                    <Link to="/register"
-                                        className="button"
-                                    >
-                                        Register
-                                    </Link>
+                            </Link>
+                            <div className="profile">
+                                <ArrowDropDown className="icon" />
+                                <div className="options">
+                                    <span>Settings</span>
+                                    <span onClick={() => dispatch(logout())}>Logout</span>
                                 </div>
                             </div>
-                        )}
-                    </Popup>
-                ) : (
-                    <div className="right">
-                    <Link to="/edit">
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png"
-                            alt=""
-                        />
-                    </Link>
-                    <div className="profile">
-                        <ArrowDropDown className="icon" />
-                        <div className="options">
-                            <span>Settings</span>
-                            <span onClick={() => dispatch(logout())}>Logout</span>
                         </div>
-                    </div>
-                   </div>
-                )}
-                </div>
-                
+                    )
+                        : (
+                            <Link to="/login"><button className="loginButton">Sign In</button></Link>
+                        )
+                }
+
+
             </div>
         </div>
     )

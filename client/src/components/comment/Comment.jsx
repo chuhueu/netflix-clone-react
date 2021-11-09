@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './comment.css'
+import './comment.scss'
 import { FaArrowUp } from 'react-icons/fa';
 import axios from '../../axios';
 import { useParams } from 'react-router-dom';
@@ -50,7 +50,7 @@ const Comment = () => {
     }, [params]);
     return (
         <div className="comment">
-            <h2 className="tittle">Comments</h2>
+            <h2 className="tittle">Comments </h2>
             {displayComment && displayComment.map((item) => {
                 return <div className='commentList' key={item._id} >
                     <div className='avatar'>

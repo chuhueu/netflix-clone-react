@@ -83,9 +83,9 @@ const Listitem = ({ index, item }) => {
                       <button className="close" onClick={close}>
                         &times;
                       </button>
-                      <div className="header">Notification</div>
+                      <div className="header">Oops!</div>
                       <div className="content">
-                        Please register or sign in to use this function
+                        You are not logged in. Please login to use this feature
                       </div>
                       <div className="actions">
                         <Link to="/register" className="button">
@@ -99,7 +99,7 @@ const Listitem = ({ index, item }) => {
                 <Link to={{ pathname: "/watch/" + movie?._id, movie: movie }}>
                   <PlayArrow className="icon play" />
                 </Link>
-              )}     
+              )}
               {check ? (
                 <CheckOutlined
                   className="icon"
@@ -112,15 +112,15 @@ const Listitem = ({ index, item }) => {
                   className="icon add"
                   onClick={() => addMovieToWatchList(movie, setCheck(!check))}
                 />
-              )}           
+              )}
               <ThumbUpAltOutlined className="icon like" />
               <ThumbDownOutlined className="icon dislike" />
               {!user ? (
                 <Popup
-                  trigger={  
+                  trigger={
                     <KeyboardArrowDown className="icon moreInfo" />
-                 
-                }
+
+                  }
                   modal
                   nested
                 >
@@ -129,9 +129,9 @@ const Listitem = ({ index, item }) => {
                       <button className="close" onClick={close}>
                         &times;
                       </button>
-                      <div className="header">Notification</div>
+                      <div className="header">Oops!</div>
                       <div className="content">
-                        Please register or sign in to use this function
+                        You are not logged in. Please login to use this feature
                       </div>
                       <div className="actions">
                         <Link to="/register" className="button">
@@ -142,12 +142,12 @@ const Listitem = ({ index, item }) => {
                   )}
                 </Popup>
               ) : (
-              <Link
-                to={{ pathname: "/info/" + movie._id, movie: movie }}
-                className="link"
-              >
-                <KeyboardArrowDown className="icon moreInfo" />
-              </Link>
+                <Link
+                  to={{ pathname: "/info/" + movie._id, movie: movie }}
+                  className="link"
+                >
+                  <KeyboardArrowDown className="icon moreInfo" />
+                </Link>
               )}
             </div>
             <div className="itemInfoTop">

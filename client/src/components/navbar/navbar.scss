@@ -128,3 +128,19 @@
 .hidden{
   display: none;
 }
+
+.loginButton {
+        background-color: #e50519;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+          transition: 0.2s;
+        }
+      }
