@@ -70,6 +70,7 @@ const Comment = () => {
                 </div>
                 <form className="commentSection" autocomplete="off">
                     <input
+                        autocomplete="false"
                         type="text"
                         name="comment"
                         id="userComment"
