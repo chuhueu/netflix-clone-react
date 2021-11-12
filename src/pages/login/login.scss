@@ -1,3 +1,10 @@
+small.form-text.text-danger{
+  display: block;
+  margin: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  color: yellow;
+}
 .login {
     width: 100vw;
     height: 100vh;
@@ -41,6 +48,10 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        h1{
+          margin-bottom: 7px;
+        
+        }
 
         input {
           height: 40px;
@@ -48,7 +59,7 @@
           background-color: gray;
           color: white;
           padding-left: 10px;
-
+          width: 286px;
           &::placeholder {
             color: lightgray;
           }

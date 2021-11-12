@@ -4,6 +4,11 @@ import { AuthContext } from "../../authContext/AuthContext";
 import { Link } from 'react-router-dom'
 import "./login.scss";
 
+import Form from 'react-validation/build/form';
+import Input from 'react-validation/build/input';
+    
+import { isEmail, isEmpty } from 'validator';
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +17,24 @@ export default function Login() {
     e.preventDefault();
     login({ email, password }, dispatch);
   };
+  const required = (value) => {
+    if (isEmpty(value)) {
+        return <small className="form-text text-danger">This field is required</small>;
+    }
+  }
+
+  const emaill = (value) => {
+    if (!isEmail(value)) {
+        return <small className="form-text text-danger">Invalid email format</small>;
+    }
+  }
+
+  const minLength = (value) => {
+    if (value.trim().length < 6) {
+        return <small className="form-text text-danger">Password must be at least 6 characters long</small>;
+    }
+  }
+
   return (
     <div className="login">
       <div className="top">
@@ -27,21 +50,26 @@ export default function Login() {
         </div>
       </div>
       <div className="container">
-        <form>
+      <Form >
           <h1>Sign In</h1>
-          <input
+          <Input
             type="email"
             placeholder="Email or phone number"
             onChange={(e) => setEmail(e.target.value)}
+            className="form-control" 
+            validations={[required, emaill]}
           />
-          <input
+          <Input
             type="password"
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            className="form-control" 
+            validations={[required, minLength]} 
           />
-          <button className="loginButton" onClick={handleLogin}>
+          <button className="btn btn-info btn-block loginButton" onClick={handleLogin}>
             Sign In
           </button>
+          {/* <CheckButton style={{ display: 'none' }} ref={c => { this.checkBtn = c }} /> */}
           <span>
             New to Netflix? <Link to="/register" style={{textDecoration: "none"}}><b>Sign up now.</b></Link>
           </span>
@@ -50,7 +78,7 @@ export default function Login() {
             bot.
             <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener noreferrer" className="learn_more"><b>Learn more</b></a>
           </small>
-        </form>
+        </Form>
       </div>
     </div>
   );
