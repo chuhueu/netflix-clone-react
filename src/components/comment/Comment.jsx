@@ -68,7 +68,7 @@ const Comment = () => {
                 <div className="userAvatar">
                     <img className='image' src={user.profilePic} alt="" />
                 </div>
-                <form className="commentSection">
+                <form className="commentSection" autocomplete="off">
                     <input
                         type="text"
                         name="comment"
