@@ -28,8 +28,7 @@ function ProfileScreen() {
                     <div className="profileScreen__details">
                         <h2>{user.email}</h2>
                         <div className="profileScreen__plans">
-                            <h3>Current plans: {JSON.parse(localStorage.getItem("plans"))}
-                                <br /> Day remaining:</h3>
+                            <h3>Current plans: {JSON.parse(localStorage.getItem("plans"))}</h3>
 
                             < PlansScreen />
                             <Link to="/login">
