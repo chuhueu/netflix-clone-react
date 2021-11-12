@@ -52,28 +52,6 @@ const PayPal = ({ plan }) => {
             status: info.status
           })
           console.log(res.data);
-          <Popup
-            trigger={
-              <span >New and Popular</span>
-            }
-            modal
-            nested
-          >
-            {close => (
-              <div className="modal">
-                <button className="close" onClick={close}>
-                  &times;
-                </button>
-                <div className="header">Oops!</div>
-                <div className="content">
-                  You are not logged in. Please login to use this feature
-                </div>
-                <div className="actions">
-
-                </div>
-              </div>
-            )}
-          </Popup>
           alert(`Ban đã thanh toán thành công gói ${info.purchase_units[0].description}`)
           localStorage.setItem("plans", JSON.stringify(info.purchase_units[0].description));
         } catch (error) {
