@@ -50,7 +50,7 @@ small.form-text.text-danger{
         justify-content: space-around;
         h1{
           margin-bottom: 7px;
-        
+
         }
 
         input {
@@ -93,4 +93,11 @@ small.form-text.text-danger{
   color: white;
   text-decoration: none;
   margin-left: 5px;
+}
+#error{
+  color: #ca5d62;
+  background: #181818;
+  padding: 5px 20px;
+  margin-top: 22px;
+  border-radius: 5px;
 }
