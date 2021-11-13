@@ -14,12 +14,10 @@ export default function Register() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const usernameRef = useRef();
-
   useEffect(() => {
     const getListUser = async () => {
       try {
         const res = await axios.get("users");
-        console.log(res.data);
         setListUser(res.data);
       } catch (error) {
         console.log(error);
@@ -31,7 +29,7 @@ export default function Register() {
   const handleStart = () => {
     setEmail(emailRef.current.value);
     let str = "";
-    listUser.map((list) => {
+    listUser.forEach((list) => {
       str += list.email;
     })
     let checkEmail = str.includes(emailRef.current.value);

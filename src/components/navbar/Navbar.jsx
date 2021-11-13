@@ -131,9 +131,6 @@ const Navbar = () => {
 
                             <span className="kid" onClick={kidClick}>DVD
                             </span>
-//                             {kid && (
-//                                 <p className="kid_access">You have to be User</p>
-//                             )}
                             <Notifications className="icon" />
                             <Link to="/edit">
                                 <img
