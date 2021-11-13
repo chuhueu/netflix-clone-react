@@ -17,10 +17,9 @@ const MovieSchema = new mongoose.Schema(
     cast: { type: String },
     genre: { type: String },
     isSeries: { type: Boolean, default: false },
-    //comments: { type: [String], default: [], required: true },
     comments: {
-      username: { type: String, required:true },
-      comment: { type: String, required: true },
+      username: { type: String },
+      comment: { type: String },
       image: {type: String}
     },
   },

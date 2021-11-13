@@ -14,9 +14,6 @@ import { FavouriteContext } from "../../favouriteContext/FavouriteContext";
 
 const MyList = () => {
     const { removeMovieFromWatchList, watchList } = useContext(FavouriteContext);
-    useEffect(() => {
-        console.log(!watchList.length > 0);
-    }, [watchList])
     return (
         <>
             <Navbar />

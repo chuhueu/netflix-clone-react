@@ -45,7 +45,7 @@ export default function Register() {
   const handleFinish = async (e) => {
     e.preventDefault();
     let str = "";
-    listUser.forEach((list) => {
+    listUser.map((list) => {
       str += list.username;
     })
     let checkUsername= str.includes(usernameRef.current.value);
