@@ -54,6 +54,7 @@ const PayPal = ({ plan }) => {
           console.log(res.data);
           alert(`Ban đã thanh toán thành công gói ${info.purchase_units[0].description}`)
           localStorage.setItem("plans", JSON.stringify(info.purchase_units[0].description));
+          localStorage.setItem("status", JSON.stringify( info.status));
         } catch (error) {
           console.log(error);
         }

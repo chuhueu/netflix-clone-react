@@ -10,6 +10,8 @@ const Featured = ({ type, setGenre }) => {
     const [movie, setMovie] = useState([]);
     const [readMore, setReadMore] = useState(false);
     const user = JSON.parse(localStorage.getItem("user"));
+    const status = JSON.parse(localStorage.getItem("status"));
+    console.log(!status);
     useEffect(() => {
         const getRandomMovie = async () => {
             try {
@@ -97,12 +99,49 @@ const Featured = ({ type, setGenre }) => {
                             </Popup>
                         ) : (
                             <>
-                                <Link to={{ pathname: "/watch/" + movie._id, movie: movie }} className="link">
+                                {!status ? (
+                                    <Popup
+                                        trigger={
+                                            <button className="play">
+                                                <PlayArrow />
+                                                <span>Play</span>
+                                            </button>}
+                                        modal
+                                        nested
+                                    >
+                                        {close => (
+                                            <div className="modal">
+                                                <button className="close" onClick={close}>
+                                                    &times;
+                                                </button>
+                                                <div className="header">Oops!</div>
+                                                <div className="content">
+                                                    You have to pay one of the movie packages!
+                                                </div>
+                                                <div className="actions">
+                                                    <Link to="/edit"
+                                                        className="button"
+                                                    >
+                                                        Pay Now
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </Popup>
+                                )
+                                    :
+                                    <Link to={{ pathname: "/watch/" + movie._id, movie: movie }} className="link">
+                                        <button className="play">
+                                            <PlayArrow />
+                                            <span>Play</span>
+                                        </button>
+                                    </Link>}
+                                {/* <Link to={{ pathname: "/watch/" + movie._id, movie: movie }} className="link">
                                     <button className="play">
                                         <PlayArrow />
                                         <span>Play</span>
                                     </button>
-                                </Link>
+                                </Link> */}
                             </>
                         )}
                         {!user ? (
