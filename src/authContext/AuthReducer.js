@@ -21,7 +21,7 @@ const AuthReducer = (state, action) => {
     case "LOGOUT":
       localStorage.setItem("watchList",[]);
       localStorage.setItem("status", null);
-      localStorage.setItem("plans", [])
+      localStorage.setItem("plans", null);
       return {
         user: null,
         isFetching: false,
