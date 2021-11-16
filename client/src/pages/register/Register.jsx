@@ -30,7 +30,7 @@ export default function Register() {
   const handleStart = () => {
     setEmail(emailRef.current.value);
     let str = "";
-    listUser.map((list) => {
+    listUser.forEach((list) => {
       str += list.email;
     })
     let checkEmail= str.includes(emailRef.current.value);
@@ -45,7 +45,7 @@ export default function Register() {
   const handleFinish = async (e) => {
     e.preventDefault();
     let str = "";
-    listUser.map((list) => {
+    listUser.forEach((list) => {
       str += list.username;
     })
     let checkUsername= str.includes(usernameRef.current.value);
